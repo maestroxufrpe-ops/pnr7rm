@@ -12,69 +12,281 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Estilização CSS Militar Corporativo
+# Estilização — SISPNR | Identidade institucional premium
 st.markdown("""
 <style>
-    .main-header {
-        font-size: 24px;
-        font-weight: bold;
-        color: #1b4332;
-        border-bottom: 3px solid #2d6a4f;
-        padding-bottom: 8px;
-        margin-bottom: 20px;
-    }
-    .sub-header {
-        font-size: 18px;
-        font-weight: bold;
-        color: #2d6a4f;
-        margin-top: 15px;
-        margin-bottom: 10px;
-    }
-    .kpi-card {
-        background-color: #f8f9fa;
-        border-left: 5px solid #2d6a4f;
-        padding: 15px;
-        border-radius: 5px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-    .kpi-value {
-        font-size: 26px;
-        font-weight: bold;
-        color: #1b4332;
-    }
-    .kpi-label {
-        font-size: 13px;
-        color: #6c757d;
-        text-transform: uppercase;
-    }
-    .portal-box {
-        background-color: #e8f5e9;
-        border: 2px solid #2d6a4f;
-        padding: 20px;
-        border-radius: 8px;
-        margin-bottom: 20px;
-    }
-    .status-badge-green {
-        background-color: #2b9348;
-        color: white;
-        padding: 5px 12px;
-        border-radius: 15px;
-        font-weight: bold;
-    }
-    .status-badge-amber {
-        background-color: #e5a100;
-        color: white;
-        padding: 5px 12px;
-        border-radius: 15px;
-        font-weight: bold;
-    }
-    .status-badge-red {
-        background-color: #d90429;
-        color: white;
-        padding: 5px 12px;
-        border-radius: 15px;
-        font-weight: bold;
-    }
+:root {
+    --eb-green: #173b2a;
+    --eb-green-2: #23543d;
+    --eb-green-3: #2f6b4d;
+    --gold: #b99a5b;
+    --gold-soft: #eadfca;
+    --ink: #17211b;
+    --muted: #6b756e;
+    --surface: #ffffff;
+    --surface-2: #f5f7f5;
+    --line: #e2e7e3;
+    --danger: #a83a3a;
+    --warning: #a87819;
+    --success: #2d6a4f;
+}
+
+/* Base */
+[data-testid="stAppViewContainer"] {
+    background:
+        radial-gradient(circle at 90% 0%, rgba(185,154,91,.08), transparent 26rem),
+        linear-gradient(180deg, #f7f9f7 0%, #f2f5f2 100%);
+}
+[data-testid="stHeader"] { background: transparent; }
+.block-container {
+    max-width: 1450px;
+    padding-top: 1.2rem;
+    padding-bottom: 3rem;
+}
+
+/* Tipografia */
+html, body, [class*="css"] {
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+                 "Segoe UI", sans-serif;
+    color: var(--ink);
+}
+h1, h2, h3, h4 { letter-spacing: -.02em; }
+
+/* Cabeçalho institucional */
+.eb-header {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 95% 20%, rgba(185,154,91,.18), transparent 18rem),
+        linear-gradient(135deg, #122d21 0%, #1c4932 55%, #173b2a 100%);
+    color: #fff;
+    box-shadow: 0 12px 35px rgba(23,59,42,.16);
+}
+.eb-header:after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: .85;
+}
+.eb-kicker {
+    margin: 0 0 5px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .16em;
+    color: #d8c8a5;
+}
+.eb-title {
+    margin: 0;
+    font-size: clamp(20px, 2vw, 29px);
+    line-height: 1.12;
+    font-weight: 800;
+}
+.eb-subtitle {
+    margin: 7px 0 0;
+    color: #cbd9d0;
+    font-size: 13px;
+}
+.eb-standard {
+    white-space: nowrap;
+    border: 1px solid rgba(234,223,202,.28);
+    background: rgba(255,255,255,.07);
+    color: #f3ead8;
+    padding: 9px 13px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .03em;
+    backdrop-filter: blur(8px);
+}
+
+/* Cabeçalhos */
+.main-header, .sub-header {
+    color: var(--eb-green);
+    font-weight: 800;
+}
+.main-header {
+    font-size: 25px;
+    line-height: 1.2;
+    padding: 0 0 11px;
+    margin: 6px 0 20px;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+}
+.main-header:after {
+    content: "";
+    position: absolute;
+    bottom: -1px; left: 0;
+    width: 76px; height: 3px;
+    background: var(--gold);
+    border-radius: 4px;
+}
+.sub-header {
+    font-size: 19px;
+    margin: 8px 0 16px;
+}
+
+/* Cartões */
+.kpi-card {
+    position: relative;
+    min-height: 104px;
+    padding: 18px 18px 16px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: rgba(255,255,255,.92);
+    box-shadow: 0 5px 18px rgba(23,59,42,.055);
+    overflow: hidden;
+}
+.kpi-card:before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, var(--gold), var(--eb-green-3));
+}
+.kpi-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .10em;
+    color: var(--muted);
+    text-transform: uppercase;
+}
+.kpi-value {
+    margin-top: 7px;
+    font-size: 29px;
+    line-height: 1;
+    font-weight: 850;
+    color: var(--eb-green);
+}
+
+/* Portal público */
+.portal-box {
+    border: 1px solid #dce6df;
+    border-left: 4px solid var(--eb-green-3);
+    padding: 20px 22px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #ffffff, #f3f7f4);
+    box-shadow: 0 7px 22px rgba(23,59,42,.05);
+}
+.portal-box h4 { margin: 0 0 7px !important; color: var(--eb-green); }
+.portal-box p { margin: 0; color: #5f6b63 !important; line-height: 1.55; }
+
+/* Badges */
+.status-badge-green, .status-badge-amber, .status-badge-red {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 11px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 800;
+    border: 1px solid transparent;
+}
+.status-badge-green { background:#e7f3ec; color:#21603e; border-color:#cce4d5; }
+.status-badge-amber { background:#fbf2dd; color:#88610e; border-color:#eeddb4; }
+.status-badge-red { background:#f8e9e9; color:#913232; border-color:#eccaca; }
+
+/* Abas */
+button[data-baseweb="tab"] {
+    font-weight: 750;
+    color: #657168;
+}
+button[data-baseweb="tab"][aria-selected="true"] {
+    color: var(--eb-green);
+}
+div[data-baseweb="tab-highlight"] {
+    background-color: var(--gold) !important;
+    height: 3px !important;
+}
+
+/* Botões */
+.stButton > button, .stFormSubmitButton > button {
+    min-height: 42px;
+    border-radius: 10px;
+    border: 1px solid #d6ded8;
+    font-weight: 750;
+    letter-spacing: .01em;
+    transition: all .16s ease;
+}
+.stButton > button:hover, .stFormSubmitButton > button:hover {
+    transform: translateY(-1px);
+    border-color: var(--eb-green-3);
+    box-shadow: 0 7px 18px rgba(23,59,42,.12);
+}
+.stButton > button[kind="primary"], .stFormSubmitButton > button[kind="primary"] {
+    background: linear-gradient(135deg, #1d4a33, #2f6b4d);
+    border: 0;
+    color: white;
+}
+
+/* Inputs */
+div[data-baseweb="input"], div[data-baseweb="select"], textarea {
+    border-radius: 10px !important;
+}
+input:focus, textarea:focus {
+    border-color: var(--eb-green-3) !important;
+    box-shadow: 0 0 0 1px var(--eb-green-3) !important;
+}
+
+/* Sidebar */
+section[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #102b20 0%, #173b2a 100%);
+    border-right: 1px solid rgba(255,255,255,.07);
+}
+section[data-testid="stSidebar"] * { color: #e7eee9; }
+section[data-testid="stSidebar"] .stRadio label p { font-size: 13px; }
+section[data-testid="stSidebar"] hr { border-color: rgba(255,255,255,.13); }
+section[data-testid="stSidebar"] .stButton > button {
+    background: rgba(255,255,255,.08);
+    color: #fff;
+    border-color: rgba(255,255,255,.14);
+}
+
+/* Tabelas / alertas */
+div[data-testid="stDataFrame"] {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+}
+div[data-testid="stAlert"] { border-radius: 11px; }
+
+/* Login */
+.login-shell {
+    max-width: 470px;
+    margin: 35px auto 0;
+    padding: 30px;
+    background: rgba(255,255,255,.96);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: 0 18px 50px rgba(23,59,42,.10);
+}
+.login-mark {
+    width: 54px; height: 54px;
+    margin: 0 auto 14px;
+    display: grid; place-items: center;
+    border-radius: 15px;
+    background: #eaf1ec;
+    font-size: 26px;
+}
+.login-title { text-align:center; color:var(--eb-green); margin:0; font-weight:850; }
+.login-copy { text-align:center; color:var(--muted); font-size:13px; margin:7px 0 22px; }
+
+/* Responsividade */
+@media (max-width: 800px) {
+    .eb-header { align-items: flex-start; flex-direction: column; padding: 20px; }
+    .eb-standard { white-space: normal; }
+    .main-header { font-size: 21px; }
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -239,16 +451,13 @@ if 'user_profile' not in st.session_state:
 
 # Header Institucional
 st.markdown("""
-<div style="display: flex; align-items: center; justify-content: space-between; background-color: #1b4332; padding: 15px 25px; border-radius: 8px; color: white; margin-bottom: 25px;">
+<div class="eb-header">
     <div>
-        <h2 style="margin: 0; color: #ffffff; font-size: 24px;">MINISTÉRIO DA DEFESA — EXÉRCITO BRASILEIRO</h2>
-        <h4 style="margin: 0; color: #b7e4c7; font-weight: 400; font-size: 16px;">SISPNR — Sistema Integrado de Gestão e Consulta de PNR</h4>
+        <div class="eb-kicker">MINISTÉRIO DA DEFESA • EXÉRCITO BRASILEIRO</div>
+        <div class="eb-title">SISPNR — Sistema Integrado de Gestão e Consulta de PNR</div>
+        <div class="eb-subtitle">Gestão de imóveis residenciais • Pretendentes • Ocupações • Vistorias</div>
     </div>
-    <div style="text-align: right;">
-        <span style="background-color: #2d6a4f; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: bold;">
-            EB10-IG-04.006 (Portaria nº 2.593/2025)
-        </span>
-    </div>
+    <div class="eb-standard">EB10-IG-04.006 • Portaria nº 2.593/2025</div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -413,9 +622,10 @@ else:
     # Verifica Autenticação
     if not st.session_state['authenticated']:
         st.markdown("""
-        <div style="max-width: 450px; margin: 0 auto; background-color: #f8f9fa; padding: 25px; border-radius: 8px; border-top: 4px solid #1b4332; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
-            <h3 style="text-align: center; color: #1b4332; margin-top:0;">Acesso Restrito</h3>
-            <p style="text-align: center; font-size: 13px; color: #6c757d;">Autenticação requerida para operadores da Seção de PNR.</p>
+        <div class="login-shell">
+            <div class="login-mark">🔐</div>
+            <h3 class="login-title">Acesso Restrito</h3>
+            <p class="login-copy">Autenticação requerida para operadores da Seção de PNR.</p>
         </div>
         """, unsafe_allow_html=True)
 
@@ -618,5 +828,11 @@ else:
                             conn.commit()
                             st.success("Administrador criado!")
                             st.rerun()
+
+        st.markdown("""
+        <div style="margin-top:34px;padding-top:14px;border-top:1px solid #e2e7e3;color:#7a847d;font-size:11px;text-align:center;">
+            SISPNR • Gestão Administrativa de PNR • Ambiente institucional
+        </div>
+        """, unsafe_allow_html=True)
 
         conn.close()
