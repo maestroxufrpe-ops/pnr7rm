@@ -357,9 +357,7 @@ if modo_acesso == "🔍 Portal do Militar Pretendente (Acesso Público)":
                                 st.write(f"• **Observações do Processo:** {req['observacoes'] or 'Sem observações'}")
                             with col_info2:
                                 if status == 'Desistente':
-                                    st.error(f"**Data da Desistência:** {req['data_desistencia']}
-
-**Motivo:** {req['motivo_desistencia']}")
+                                    st.error(f"**Data da Desistência:** {req['data_desistencia']} | **Motivo:** {req['motivo_desistencia']}")
                                 elif status == 'Contemplado':
                                     df_oc = pd.read_sql("""
                                         SELECT p.codigo_pnr, p.endereco_completo, o.data_inicio_vigencia, o.diex_implantacao
@@ -369,9 +367,7 @@ if modo_acesso == "🔍 Portal do Militar Pretendente (Acesso Público)":
                                     """, conn, params=(mil['id_militar'],))
                                     if not df_oc.empty:
                                         oc_data = df_oc.iloc[0]
-                                        st.success(f"🏠 **PNR Atribuído:** {oc_data['codigo_pnr']} - {oc_data['endereco_completo']}
-
-**Início da Ocupação:** {oc_data['data_inicio_vigencia']}")
+                                        st.success(f"🏠 **PNR Atribuído:** {oc_data['codigo_pnr']} - {oc_data['endereco_completo']} | **Início:** {oc_data['data_inicio_vigencia']}")
 
                             st.markdown("---")
 
@@ -453,15 +449,11 @@ else:
                     conn.close()
                     st.error("⚠️ Usuário ou senha inválidos. Tente novamente.")
 
-        st.info("💡 **Credenciais de Demonstração:**
-- **Administrador:** `admin` / `pnr2026`
-- **Gestor de PNR:** `gestor.pnr` / `gestor2026`")
+        st.info("💡 **Credenciais de Demonstração:**\n- **Administrador:** `admin` / `pnr2026`\n- **Gestor de PNR:** `gestor.pnr` / `gestor2026`")
 
     else:
         # Usuário Autenticado - Painel Completo
-        st.sidebar.success(f"👤 **Conectado:** {st.session_state['user_name']}
-
-**Perfil:** {st.session_state['user_profile']}")
+        st.sidebar.success(f"👤 **Conectado:** {st.session_state['user_name']} | **Perfil:** {st.session_state['user_profile']}")
         if st.sidebar.button("🚪 Encerrar Sessão (Logout)"):
             st.session_state['authenticated'] = False
             st.session_state['user_login'] = ""
